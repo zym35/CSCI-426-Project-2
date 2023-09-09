@@ -25,9 +25,32 @@ public class BlockSpawningScript : MonoBehaviour
     {
         int randomIndex = Random.Range(0, shapes.Length);
 
-        // Spawn the shape at a random x position
-        float x = Random.Range(-5.0f, 5.0f);
-        GameObject shape = Instantiate(shapes[randomIndex], new Vector2(x, 10), Quaternion.identity);
+        // Spawn the shape at a random x position, rounded to the nearest unit for grid alignment
+        float x = Mathf.Round(Random.Range(-5.0f, 5.0f));
+
+        // Instantiate the shape
+        GameObject shape = Instantiate(shapes[randomIndex]);
+
+        // Special condition for 'OShape' or 'IShape'
+        if (shape.name.Contains("OShape") || shape.name.Contains("IShape"))
+        {
+            x -= 0.5f;
+        }
+
+        // If the shape has a pivot point defined
+        Transform pivot = shape.transform.Find("PivotPoint");  // Replace "PivotPoint" with the name of your pivot GameObject
+
+        if (pivot != null)
+        {
+            Vector3 offset = pivot.localPosition;
+
+            // Adjust the spawn position based on the local position of the pivot point
+            shape.transform.position = new Vector3(x - offset.x, 10 - offset.y, 0);
+        }
+        else
+        {
+            shape.transform.position = new Vector2(x, 10);
+        }
 
         shape.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
     }

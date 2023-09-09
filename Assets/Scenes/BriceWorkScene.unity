@@ -153,7 +153,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapes:
-  - {fileID: 4344336292466851310, guid: 7cc16a599f3ce4b9cb5c0d2239fcea9e, type: 3}
+  - {fileID: 7491386283755952313, guid: 446f5711f272c47ab9d88d6d72f611b8, type: 3}
+  - {fileID: 6611676241949203923, guid: 0f5d394672f4e4eef9e6ff164fee2509, type: 3}
+  - {fileID: 3463186859901137035, guid: b6103055c676647a7a8990b9396dce8f, type: 3}
+  - {fileID: 8523911730572579751, guid: 3d11cc45bb87442c5ac70407ca668abe, type: 3}
+  - {fileID: 406163261932554830, guid: dff681a23b7314fdb8b99f6376d11d4c, type: 3}
+  - {fileID: 455806588261231393, guid: 3502962352f214995a7d7d16473e1422, type: 3}
+  - {fileID: 4975343480195782022, guid: 9ca39bf60f9ff486780394fa8b804cbf, type: 3}
   dropInterval: 1
 --- !u!4 &93379194
 Transform:
@@ -276,7 +282,7 @@ GameObject:
   - component: {fileID: 1123808494}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Platform
+  m_TagString: Locked
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
