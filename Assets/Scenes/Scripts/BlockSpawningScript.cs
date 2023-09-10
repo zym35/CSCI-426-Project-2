@@ -5,10 +5,30 @@ using UnityEngine;
 public class BlockSpawningScript : MonoBehaviour
 {
     public GameObject[] shapes; // Assign your shape prefabs here in the inspector
+    public Material yourMaterial; // Drag your material here in the inspector
     public float dropInterval = 1.0f;
+    private Dictionary<string, Color> shapeColors;
+    private float zOrder = 0f;  // Initialize to 0; increase this value for every new block
+
 
     private void Start()
     {
+        shapeColors = new Dictionary<string, Color>
+    {
+        { "IShape", Color.red },
+        { "JShape", Color.green },
+        { "LShape", Color.blue },
+        { "OShape", Color.yellow },
+        { "SShape", Color.cyan },
+        { "TShape", Color.magenta },
+        { "ZShape", Color.grey }
+    };
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer rend in renderers)
+        {
+
+            rend.material = yourMaterial;
+        }
         StartCoroutine(DropShapes());
     }
 
@@ -25,34 +45,60 @@ public class BlockSpawningScript : MonoBehaviour
     {
         int randomIndex = Random.Range(0, shapes.Length);
 
-        // Spawn the shape at a random x position, rounded to the nearest unit for grid alignment
+        // Round to the nearest unit to align with grid
         float x = Mathf.Round(Random.Range(-5.0f, 5.0f));
 
-        // Instantiate the shape
-        GameObject shape = Instantiate(shapes[randomIndex]);
+        // Create a new Vector3 for the position, adding in the zOrder for the z-axis
+        Vector3 spawnPos = new Vector3(x, 10, zOrder);
 
-        // Special condition for 'OShape' or 'IShape'
-        if (shape.name.Contains("OShape") || shape.name.Contains("IShape"))
+        // Instantiate shape at random position
+        GameObject shape = Instantiate(shapes[randomIndex], spawnPos, Quaternion.identity);
+
+        // Increase the zOrder for next time
+        zOrder += 0.1f;  // Increase this by however much is needed to separate the objects
+
+        // Prepare to set color based on shape name
+        string shapeName = shape.name.Split('(')[0];  // Remove the "(Clone)" part of the name
+
+        // Prepare material to set color
+        Material newMaterial = new Material(Shader.Find("Custom/ColoredInteriorBorder"));
+
+        if (shapeColors.TryGetValue(shapeName, out Color shapeColor))
         {
-            x -= 0.5f;
+            newMaterial.color = shapeColor;
+            SetMaterialToAllChildren(shape, newMaterial);
         }
 
-        // If the shape has a pivot point defined
-        Transform pivot = shape.transform.Find("PivotPoint");  // Replace "PivotPoint" with the name of your pivot GameObject
-
-        if (pivot != null)
+        // Rotate shape randomly by multiples of 90 degrees
+        Transform pivotPoint = shape.transform.Find("Pivot");
+        if (pivotPoint != null)
         {
-            Vector3 offset = pivot.localPosition;
-
-            // Adjust the spawn position based on the local position of the pivot point
-            shape.transform.position = new Vector3(x - offset.x, 10 - offset.y, 0);
-        }
-        else
-        {
-            shape.transform.position = new Vector2(x, 10);
+            float randomRotation = 90f * Random.Range(0, 4);
+            shape.transform.RotateAround(pivotPoint.position, Vector3.forward, randomRotation);
         }
 
+        // Activate gravity
         shape.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+    }
+
+    void SetMaterialToAllChildren(GameObject parentObject, Material newMaterial)
+    {
+        // Set the material to the parent object itself if it has a Renderer component
+        Renderer parentRenderer = parentObject.GetComponent<Renderer>();
+        if (parentRenderer != null)
+        {
+            parentRenderer.material = newMaterial;
+        }
+
+        // Now set the material to all child objects
+        foreach (Transform child in parentObject.transform)
+        {
+            Renderer rend = child.gameObject.GetComponent<Renderer>();
+            if (rend != null)
+            {
+                rend.material = newMaterial;
+            }
+        }
     }
 
 
