@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Transform beam;
-    public float horizontalSpeed, beamFallingSpeed, beamControlSpeed;
+    public float horizontalSpeed, beamControlSpeed;
+    public Rigidbody2D beamRb;
 
     private Rigidbody2D _rb;
 
@@ -17,12 +18,18 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        MoveWheel();
+        var input = Input.GetAxis("Horizontal");
+        MoveWheel(input);
+        ControlBeam(input);
     }
 
-    private void MoveWheel()
+    private void MoveWheel(float input)
     {
-        var input = Input.GetAxis("Horizontal");
-        _rb.AddForce(Vector2.right * input * horizontalSpeed * Time.deltaTime);
+        _rb.AddForce(input * horizontalSpeed * Time.deltaTime * Vector2.right, ForceMode2D.Impulse);
+    }
+
+    private void ControlBeam(float input)
+    {
+        beamRb.AddTorque(input * beamControlSpeed * Time.deltaTime, ForceMode2D.Impulse);
     }
 }

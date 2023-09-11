@@ -14,7 +14,7 @@ public class ShapeBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "Locked" && this.tag != "Locked")
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            //rb.constraints = RigidbodyConstraints2D.FreezeAll;
             LockBlocks();
             pc = GameObject.Find("ProgressManager").GetComponent<ProgressChecker>();
             pc.AddMassFromParent(this.gameObject);
