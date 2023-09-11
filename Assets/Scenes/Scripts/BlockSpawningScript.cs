@@ -15,13 +15,13 @@ public class BlockSpawningScript : MonoBehaviour
     {
         shapeColors = new Dictionary<string, Color>
     {
-        { "IShape", Color.red },
-        { "JShape", Color.green },
-        { "LShape", Color.blue },
-        { "OShape", Color.yellow },
-        { "SShape", Color.cyan },
-        { "TShape", Color.magenta },
-        { "ZShape", Color.grey }
+        { "IShape", Color.white },
+        { "JShape", Color.red },
+        { "LShape", Color.red },
+        { "OShape", Color.white },
+        { "SShape", Color.red },
+        { "TShape", Color.red },
+        { "ZShape", Color.red }
     };
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
         foreach (Renderer rend in renderers)
