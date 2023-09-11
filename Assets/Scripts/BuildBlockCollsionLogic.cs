@@ -5,7 +5,8 @@ using UnityEngine;
 public class BuildBlockCollsionLogic : MonoBehaviour
 {
     public float animationDuration = 1.0f; // Duration of the breaking animation
-    public float maxRotationSpeed = 360f; // Maximum rotation speed in degrees per second
+    public float maxRotationSpeed = 360f; // Maximum rotation speed in degrees per
+    private bool isAttached = false;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -13,6 +14,32 @@ public class BuildBlockCollsionLogic : MonoBehaviour
         {
             StartCoroutine(BreakAnimation());
         }
+        else if ((collision.gameObject.tag == "Truck" || collision.gameObject.tag == "Block") && !isAttached)
+        {
+            MoveToTopAndAttach(collision.gameObject);
+            AddObjectToStack();
+        }
+    }
+
+    private void MoveToTopAndAttach(GameObject target)
+    {
+        isAttached = true; // Mark as attached so it won't break or attach again
+
+        // Calculate the top position of the target object
+        float targetTopY = target.transform.position.y + target.GetComponent<Collider2D>().bounds.extents.y;
+        float myHalfHeight = GetComponent<Collider2D>().bounds.extents.y;
+
+        // Set the new position
+        transform.position = new Vector3(target.transform.position.x, targetTopY + myHalfHeight, transform.position.z);
+
+        // Make this object a child of the target object
+        transform.SetParent(target.transform);
+    }
+
+    private void AddObjectToStack()
+    {
+        GameObject truck = GameObject.FindGameObjectWithTag("Truck");
+        truck.GetComponent<TruckManager>().addToStack(this.gameObject);
     }
 
     IEnumerator BreakAnimation()
