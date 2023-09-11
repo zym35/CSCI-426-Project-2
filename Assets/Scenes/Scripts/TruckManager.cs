@@ -5,6 +5,8 @@ using UnityEngine;
 public class TruckManager : MonoBehaviour
 {
     public Stack<GameObject> buildingParts;
+    [SerializeField]
+    public BuildingManager buildingManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,7 @@ public class TruckManager : MonoBehaviour
         if(buildingParts.Count > 0)
         {
             GameObject poppedBuilding = buildingParts.Pop();
-            Destroy(poppedBuilding);
+            buildingManager.PlaceBuildingPart(poppedBuilding);
         }
         
     }
