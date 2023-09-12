@@ -10,7 +10,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text moneyText;
     public List<GameObject> buildingPlaceHolders;
 
-    private int _money;
+    [HideInInspector]
+    public int _money;
     
     private void Awake()
     {
