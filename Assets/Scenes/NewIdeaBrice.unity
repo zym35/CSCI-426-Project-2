@@ -1587,7 +1587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 164331571224852456, guid: c20debf0b2d0c45b0b56a4b836b0c983, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 164331571224852456, guid: c20debf0b2d0c45b0b56a4b836b0c983, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1615,6 +1615,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 164331571224852456, guid: c20debf0b2d0c45b0b56a4b836b0c983, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 501293573775324855, guid: c20debf0b2d0c45b0b56a4b836b0c983, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1058755657216734329, guid: c20debf0b2d0c45b0b56a4b836b0c983, type: 3}
@@ -3361,6 +3365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   truck: {fileID: 1908873496}
+  targetSize: 0
 --- !u!1 &1259635423
 GameObject:
   m_ObjectHideFlags: 0
@@ -5646,7 +5651,7 @@ Transform:
   m_GameObject: {fileID: 1908873490}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -3.25, z: 0}
+  m_LocalPosition: {x: 0, y: -3.25, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

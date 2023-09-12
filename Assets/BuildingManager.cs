@@ -76,7 +76,7 @@ public class BuildingManager : MonoBehaviour
         // Calculate the position to move the popped building part to
         float buildingBottomY = transform.position.y - GetComponent<Collider2D>().bounds.extents.y;
         float buildingPartHalfHeight = buildingPart.GetComponent<Collider2D>().bounds.extents.y + 0.1f;
-        Vector3 newPosition = new Vector3(transform.position.x, buildingBottomY + currentStackHeight + buildingPartHalfHeight, buildingPart.transform.position.z);
+        Vector3 newPosition = new Vector3(transform.position.x, buildingBottomY + currentStackHeight + buildingPartHalfHeight, 2);
 
         // Move the popped building part to the new position
         buildingPart.transform.position = newPosition;

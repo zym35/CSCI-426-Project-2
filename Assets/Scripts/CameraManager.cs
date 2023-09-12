@@ -8,7 +8,8 @@ public class CameraManager : MonoBehaviour
     private Transform activeBuildingBox;
     private Camera cam;
     private float lerpSpeed = 5f;
-    private float targetSize;
+    [HideInInspector]
+    public float targetSize;
     private bool shouldResize = false;
     private float originalBottomEdge;
 
@@ -30,7 +31,6 @@ public class CameraManager : MonoBehaviour
         if (activeBuildingBox.tag != "ActiveBuildingBox")
         {
             activeBuildingBox = GameObject.FindGameObjectWithTag("ActiveBuildingBox").transform;
-            targetSize += 2;
             shouldResize = true;
         }
 

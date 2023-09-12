@@ -16,6 +16,13 @@ public class TruckManager : MonoBehaviour
 
     public void addToStack(GameObject newObject)
     {
+        if(buildingParts.Count > 0)
+        {
+            GameObject topObject = buildingParts.Peek();
+            if (topObject.name.Contains("Roof")){
+                DeathManager.Instance.restartGame("Can't Stack on Top of Roof");
+            }
+        }
         buildingParts.Push(newObject);
     }
 
