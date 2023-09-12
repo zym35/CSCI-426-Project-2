@@ -6,14 +6,20 @@ public class BuildingManager : MonoBehaviour
 {
     private bool isCoroutineRunning = false;
     private float currentStackHeight = 0f; // To keep track of the height of the stack
-    private int cashPerSecond = 0;
     [SerializeField]
-    public NewBuildingBox newBuildingBox; 
+    public NewBuildingBox newBuildingBox;
+    private UIManager moneyManager;
+
+    private int numGlass;
+    private int numRoof;
+    private int numWall;
 
     private void Start()
     {
         GameObject.FindWithTag("Truck").GetComponent<TruckManager>().buildingManager = this.gameObject.GetComponent<BuildingManager>();
         GameObject craneObject = GameObject.Find("Crane");
+        moneyManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+        print(moneyManager.name);
 
         if (craneObject != null)
         {
@@ -75,12 +81,13 @@ public class BuildingManager : MonoBehaviour
 
         if(buildingPart.name.Contains("Wall"))
         {
-            cashPerSecond += 1;
+            numWall += 1;
         } else if (buildingPart.name.Contains("Glass"))
         {
-            cashPerSecond += 2;
+            numGlass += 1;
         } else if (buildingPart.name.Contains("Roof"))
         {
+            numRoof += 1;
             finishBuilding();
         }
     }
@@ -88,6 +95,9 @@ public class BuildingManager : MonoBehaviour
     public void finishBuilding()
     {
         Transform parent = gameObject.transform.parent;
+
+
+
         // disable red bar
         Destroy(parent.GetChild(1).gameObject);
         // lower the opacity of the building box
@@ -95,6 +105,9 @@ public class BuildingManager : MonoBehaviour
         // remove the active tag
         this.gameObject.tag = "Untagged";
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        UIManager.Instance.PlaceBuilding(numGlass, numWall, numRoof, this.transform);
+        print(this.transform);
+
 
         // Spawn in new building box
         Vector3 spawnPosition = transform.position + new Vector3(6, 0, 0);
