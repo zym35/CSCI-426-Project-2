@@ -86,6 +86,7 @@ public class UpgradeManager : MonoBehaviour
                     {
                         truckScript.acceleration += 1;
                     }
+                    DeathManager.Instance.speedUpgrade += 1;
                     break;
                 case 2:
                     // Iterate through the array and do something with each building
@@ -94,6 +95,7 @@ public class UpgradeManager : MonoBehaviour
                         building.moneyRate /= (level - 1);
                         building.moneyRate *= level;
                     }
+                    DeathManager.Instance.buildingUpgrade += 1;
                     break;
                 case 3:
                     foreach (BuildingPlaced building in buildings)
@@ -101,6 +103,7 @@ public class UpgradeManager : MonoBehaviour
                         building.generateMoneyInterval *= (level - 1);
                         building.generateMoneyInterval /= level;
                     }
+                    DeathManager.Instance.rateUpgrade += 1;
                     break;
                 default:
                     break;

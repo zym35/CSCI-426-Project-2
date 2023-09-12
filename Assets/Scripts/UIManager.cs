@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviour
         var ui = Instantiate(popupUIPrefab, pos, Quaternion.identity);
         ui.GetComponent<PopupUI>().Initialize($"+${money}");
         _money += money;
+        DeathManager.Instance.netIncome += money;
         moneyText.text = $"Money: ${_money}";
     }
 }

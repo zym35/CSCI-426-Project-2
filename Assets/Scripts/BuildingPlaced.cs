@@ -14,6 +14,9 @@ public class BuildingPlaced : MonoBehaviour
         moneyRate = (numWall + numGlass * 2) + numRoof;
         empty = false;
 
+        DeathManager.Instance.totalWalls += numWall;
+        DeathManager.Instance.totalGlass += numGlass;
+        DeathManager.Instance.totalRoofs += numRoof;
 
         // Find the child with a name containing "Roof"
         Transform roofTransform = null;

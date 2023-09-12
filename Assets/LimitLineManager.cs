@@ -9,14 +9,8 @@ public class LimitLineManager : MonoBehaviour
     {
         if (collider.gameObject.tag == "Block")
         {
-            restartGame();
+            DeathManager.Instance.restartGame("You Built Above City Limits.");
         }
-    }
-
-    public void restartGame()
-    {
-        int activeScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(activeScene);
     }
 
 }
