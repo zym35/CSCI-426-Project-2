@@ -4,18 +4,49 @@ using UnityEngine;
 
 public class CarMoveScript : MonoBehaviour
 {
-    public float speed = 8.0f; // Speed at which the GameObject will move
+    private float initialSpeed = 5f; // Initial speed
+    private float maxSpeed = 20f; // Maximum speed
+    private float acceleration = 2f; // Acceleration rate
+    private float currentSpeed; // Current speed
+    private Camera cam;
+    private float halfCamWidth;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        // Get horizontal input (a/left arrow is -1, d/right arrow is 1)
+        cam = Camera.main;
+        halfCamWidth = cam.orthographicSize * cam.aspect;
+        currentSpeed = initialSpeed;
+    }
+
+    void FixedUpdate()
+    {
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        // Calculate the new position
-        Vector3 newPosition = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, 0, 0);
+        // Apply acceleration if moving
+        if (Mathf.Abs(horizontalInput) > 0.01f)
+        {
+            currentSpeed += acceleration * Time.deltaTime;
+        }
+        else
+        {
+            // Reset speed when not moving
+            currentSpeed = initialSpeed;
+        }
 
-        // Update the GameObject's position
-        transform.position = newPosition;
+        // Clamp the speed
+        currentSpeed = Mathf.Clamp(currentSpeed, initialSpeed, maxSpeed);
+
+        Vector3 movement = new Vector3(horizontalInput, 0f, 0f);
+        transform.position += movement * Time.deltaTime * currentSpeed;
+
+        // Get camera position and limits
+        Vector3 camPosition = cam.transform.position;
+        float leftLimit = camPosition.x - halfCamWidth - 3;
+        float rightLimit = camPosition.x + halfCamWidth;
+
+        // Clamp the truck's position to the camera's bounds
+        Vector3 clampedPosition = transform.position;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, leftLimit, rightLimit);
+        transform.position = clampedPosition;
     }
 }

@@ -106,6 +106,7 @@ public class BuildingManager : MonoBehaviour
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         // remove the active tag
         this.gameObject.tag = "Untagged";
+        parent.gameObject.tag = "Untagged";
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         UIManager.Instance.PlaceBuilding(numGlass, numWall, numRoof, this.transform);
 
