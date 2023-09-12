@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Platform
+  - Locked
+  - Road
+  - Block
+  - Truck
+  - ActiveBuildingBox
+  - UIManager
   layers:
   - Default
   - TransparentFX
