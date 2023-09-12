@@ -9,7 +9,7 @@ public class PopupUI : MonoBehaviour
     public float appearDuration, fadeDuration;
     public float appearDistance, fadeDistance;
 
-    public void Instantiate(string message)
+    public void Initialize(string message)
     {
         text.text = message;
     }

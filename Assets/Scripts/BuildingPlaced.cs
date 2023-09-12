@@ -6,10 +6,13 @@ public class BuildingPlaced : MonoBehaviour
     public Transform popupUISpawn;
     public float generateMoneyInterval;
     public int moneyRate;
+    public bool empty = true;
 
-    public void Instantiate(int numGlass, int numWall, int numRoof)
+    public void Initialize(int numGlass, int numWall, int numRoof, Transform building)
     {
         moneyRate = (numWall + numRoof * 2) * numGlass;
+        empty = false;
+        building.SetParent(transform);
     }
 
     private void Start()
