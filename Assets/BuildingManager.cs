@@ -108,7 +108,6 @@ public class BuildingManager : MonoBehaviour
         this.gameObject.tag = "Untagged";
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         UIManager.Instance.PlaceBuilding(numGlass, numWall, numRoof, this.transform);
-        print(this.transform);
 
 
         // Spawn in new building box
