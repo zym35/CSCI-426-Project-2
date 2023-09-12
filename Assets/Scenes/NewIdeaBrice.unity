@@ -569,6 +569,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 3942652903616358151, guid: 6c8ef3528660d68439768edac9cc49ee, type: 3}
+  - {fileID: 3543038711425091996, guid: 09f0b51fff86f644395246b73bcaf009, type: 3}
+  - {fileID: 7608966149246976009, guid: 61b5ef10536996b45b0a241c500e9616, type: 3}
   spawnPosition: {x: -11, y: 2}
 --- !u!4 &240848929
 Transform:
@@ -2299,7 +2301,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 196.1, y: -41.8}
-  m_SizeDelta: {x: 379.26, y: 50}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1630131707
 MonoBehaviour:
@@ -2810,6 +2812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf223c407d6f40fc9b908f1c029b218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialSpeed: 5
+  acceleration: 2
 --- !u!212 &1908873495
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3098,15 +3102,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcdd58a02e7243809f524a498c11953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedLevel: 0
   speedPrice: 10
-  buildingLevel: 0
   buildingPrice: 20
-  rateLevel: 0
   ratePrice: 30
   speedText: {fileID: 972202703}
   buildingText: {fileID: 1042677164}
   rateText: {fileID: 1071708369}
+  truckScript: {fileID: 1908873494}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

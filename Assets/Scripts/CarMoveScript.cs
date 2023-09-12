@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CarMoveScript : MonoBehaviour
 {
-    private float initialSpeed = 5f; // Initial speed
+    [HideInInspector]
+    public float initialSpeed = 5f; // Initial speed
     private float maxSpeed = 20f; // Maximum speed
-    private float acceleration = 2f; // Acceleration rate
+    [HideInInspector]
+    public float acceleration = 2f; // Acceleration rate
     private float currentSpeed; // Current speed
     private Camera cam;
     private float halfCamWidth;
