@@ -4,17 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
   - Platform
   - Locked
   - Road
   - Block
   - Truck
-=======
-  - Truck
-  - Road
-  - Block
->>>>>>> 0703eb10a8a568d1b2a30f1d917430b4b10066b0
   - ActiveBuildingBox
   - UIManager
   layers:
