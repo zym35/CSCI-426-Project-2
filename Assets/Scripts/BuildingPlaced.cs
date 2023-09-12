@@ -14,10 +14,8 @@ public class BuildingPlaced : MonoBehaviour
         moneyRate = (numWall + numRoof * 2) * numGlass;
         empty = false;
         building.SetParent(transform);
-    }
-
-    private void Start()
-    {
+        building.localPosition = Vector3.zero;
+        building.localScale *= 0.5f;
         StartCoroutine(GenerateMoney());
     }
 
