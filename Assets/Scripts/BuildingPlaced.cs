@@ -14,6 +14,7 @@ public class BuildingPlaced : MonoBehaviour
         empty = false;
         building.SetParent(transform);
         building.localPosition = Vector3.zero;
+        building.localScale *= 0.5f;
         StartCoroutine(GenerateMoney());
     }
 
