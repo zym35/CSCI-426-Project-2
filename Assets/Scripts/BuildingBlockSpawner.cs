@@ -6,8 +6,6 @@ public class BuildingBlockSpawner : MonoBehaviour
 {
     public List<GameObject> prefabs;
     public Vector2 spawnPosition = new Vector2(-11, 2);
-    private float freezeTime = 1f;
-    private float spawnInterval = 1f;
 
     void Start()
     {
@@ -30,7 +28,7 @@ public class BuildingBlockSpawner : MonoBehaviour
             }
 
             // Wait for 3 seconds before unfreezing
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
 
             // Unfreeze the Rigidbody2D
             if (rb != null)

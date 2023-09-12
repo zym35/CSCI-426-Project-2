@@ -11,6 +11,7 @@ public class TruckManager : MonoBehaviour
     void Start()
     {
         buildingParts = new Stack<GameObject>();
+        buildingManager = GameObject.FindWithTag("ActiveBuildingBox").GetComponent<BuildingManager>();
     }
 
     public void addToStack(GameObject newObject)

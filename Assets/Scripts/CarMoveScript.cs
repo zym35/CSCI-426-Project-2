@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarMoveScript : MonoBehaviour
 {
-    public float speed = 5.0f; // Speed at which the GameObject will move
+    public float speed = 8.0f; // Speed at which the GameObject will move
 
     // Update is called once per frame
     void Update()

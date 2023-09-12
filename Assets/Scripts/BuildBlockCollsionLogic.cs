@@ -8,15 +8,15 @@ public class BuildBlockCollsionLogic : MonoBehaviour
     public float maxRotationSpeed = 360f; // Maximum rotation speed in degrees per
     private bool isAttached = false;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.tag == "Road")
+        if (collider.gameObject.tag == "Road")
         {
             StartCoroutine(BreakAnimation());
         }
-        else if ((collision.gameObject.tag == "Truck" || collision.gameObject.tag == "Block") && !isAttached)
+        else if ((collider.gameObject.tag == "Truck" || collider.gameObject.tag == "Block") && !isAttached)
         {
-            MoveToTopAndAttach(collision.gameObject);
+            MoveToTopAndAttach(collider.gameObject);
             AddObjectToStack();
         }
     }
@@ -25,6 +25,8 @@ public class BuildBlockCollsionLogic : MonoBehaviour
     {
         isAttached = true; // Mark as attached so it won't break or attach again
 
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         // Calculate the top position of the target object
         float targetTopY = target.transform.position.y + target.GetComponent<Collider2D>().bounds.extents.y;
         float myHalfHeight = GetComponent<Collider2D>().bounds.extents.y;

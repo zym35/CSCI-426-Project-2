@@ -6,6 +6,25 @@ public class BuildingManager : MonoBehaviour
 {
     private bool isCoroutineRunning = false;
     private float currentStackHeight = 0f; // To keep track of the height of the stack
+    private int cashPerSecond = 0;
+    [SerializeField]
+    public NewBuildingBox newBuildingBox; 
+
+    private void Start()
+    {
+        GameObject.FindWithTag("Truck").GetComponent<TruckManager>().buildingManager = this.gameObject.GetComponent<BuildingManager>();
+        GameObject craneObject = GameObject.Find("Crane");
+
+        if (craneObject != null)
+        {
+            Debug.Log("Found GameObject: " + craneObject.name);
+            newBuildingBox = craneObject.GetComponent<NewBuildingBox>();
+        }
+        else
+        {
+            Debug.Log("GameObject not found");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -40,6 +59,7 @@ public class BuildingManager : MonoBehaviour
         buildingPart.transform.SetParent(transform);
         Rigidbody2D rb = buildingPart.GetComponent<Rigidbody2D>();
         Collider2D col = buildingPart.GetComponent<Collider2D>();
+
         if (rb != null) rb.isKinematic = true;
         if (col != null) col.enabled = false;
         // Calculate the position to move the popped building part to
@@ -52,5 +72,32 @@ public class BuildingManager : MonoBehaviour
 
         // Update the current stack height
         currentStackHeight += 0.5f + buildingPartHalfHeight;
+
+        if(buildingPart.name.Contains("Wall"))
+        {
+            cashPerSecond += 1;
+        } else if (buildingPart.name.Contains("Glass"))
+        {
+            cashPerSecond += 2;
+        } else if (buildingPart.name.Contains("Roof"))
+        {
+            finishBuilding();
+        }
+    }
+
+    public void finishBuilding()
+    {
+        Transform parent = gameObject.transform.parent;
+        // disable red bar
+        Destroy(parent.GetChild(1).gameObject);
+        // lower the opacity of the building box
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        // remove the active tag
+        this.gameObject.tag = "Untagged";
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
+        // Spawn in new building box
+        Vector3 spawnPosition = transform.position + new Vector3(6, 0, 0);
+        newBuildingBox.spawnBuilding(spawnPosition);
     }
 }
