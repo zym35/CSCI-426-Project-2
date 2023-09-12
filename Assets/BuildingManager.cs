@@ -61,16 +61,18 @@ public class BuildingManager : MonoBehaviour
 
     public void PlaceBuildingPart(GameObject buildingPart)
     {
+        this.tag = "Untagged";
         // Make the buildingPart a child of the building
         buildingPart.transform.SetParent(transform);
         Rigidbody2D rb = buildingPart.GetComponent<Rigidbody2D>();
         Collider2D col = buildingPart.GetComponent<Collider2D>();
 
         if (rb != null) rb.isKinematic = true;
-        if (col != null) col.enabled = false;
+        //if (col != null) col.enabled = false;
+        
         // Calculate the position to move the popped building part to
         float buildingBottomY = transform.position.y - GetComponent<Collider2D>().bounds.extents.y;
-        float buildingPartHalfHeight = buildingPart.GetComponent<Collider2D>().bounds.extents.y + 0.5f;
+        float buildingPartHalfHeight = buildingPart.GetComponent<Collider2D>().bounds.extents.y + 0.1f;
         Vector3 newPosition = new Vector3(transform.position.x, buildingBottomY + currentStackHeight + buildingPartHalfHeight, buildingPart.transform.position.z);
 
         // Move the popped building part to the new position

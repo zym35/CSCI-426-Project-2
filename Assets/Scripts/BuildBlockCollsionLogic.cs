@@ -10,14 +10,17 @@ public class BuildBlockCollsionLogic : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Road")
+        if (this.tag == "Block")
         {
-            StartCoroutine(BreakAnimation());
-        }
-        else if ((collider.gameObject.tag == "Truck" || collider.gameObject.tag == "Block") && !isAttached)
-        {
-            MoveToTopAndAttach(collider.gameObject);
-            AddObjectToStack();
+            if (collider.gameObject.tag == "Road")
+            {
+                StartCoroutine(BreakAnimation());
+            }
+            else if ((collider.gameObject.tag == "Truck" || collider.gameObject.tag == "Block") && !isAttached)
+            {
+                MoveToTopAndAttach(collider.gameObject);
+                AddObjectToStack();
+            }
         }
     }
 

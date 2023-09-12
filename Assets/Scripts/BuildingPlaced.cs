@@ -10,6 +10,7 @@ public class BuildingPlaced : MonoBehaviour
 
     public void Initialize(int numGlass, int numWall, int numRoof, Transform building)
     {
+        Instantiate(this);
         moneyRate = (numWall + numRoof * 2) * numGlass;
         empty = false;
         building.SetParent(transform);
