@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &455574211
+--- !u!1001 &1906820
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -171,19 +171,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1058755657216734329, guid: c20debf0b2d0c45b0b56a4b836b0c983, type: 3}
-      propertyPath: m_TagString
-      value: ActiveBuildingBox
-      objectReference: {fileID: 0}
+    - target: {fileID: 4302704976668497789, guid: c20debf0b2d0c45b0b56a4b836b0c983, type: 3}
+      propertyPath: newBuildingBox
+      value: 
+      objectReference: {fileID: 1682755009}
     - target: {fileID: 6434211303722408970, guid: c20debf0b2d0c45b0b56a4b836b0c983, type: 3}
       propertyPath: m_Name
       value: Building
       objectReference: {fileID: 0}
-    - target: {fileID: 6434211303722408970, guid: c20debf0b2d0c45b0b56a4b836b0c983, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3005241109545237285, guid: c20debf0b2d0c45b0b56a4b836b0c983, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -416,6 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6001055cda9bc4a2ab83712c1e8cf12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingManager: {fileID: 0}
 --- !u!50 &887122891
 Rigidbody2D:
   serializedVersion: 4
@@ -797,6 +795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1682755007}
   - component: {fileID: 1682755008}
+  - component: {fileID: 1682755009}
   m_Layer: 0
   m_Name: Crane
   m_TagString: Untagged
@@ -835,10 +834,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 3942652903616358151, guid: f0c8bde44dc94449e8bcfe10bee9a7f4, type: 3}
-  - {fileID: 7608966149246976009, guid: b02cfc6ee26284387be1365e12436e48, type: 3}
-  - {fileID: 3543038711425091996, guid: 81822283f691e4b6cbb2bdfe5b2f3d84, type: 3}
+  - {fileID: 3942652903616358151, guid: 6c8ef3528660d68439768edac9cc49ee, type: 3}
+  - {fileID: 7608966149246976009, guid: 61b5ef10536996b45b0a241c500e9616, type: 3}
+  - {fileID: 3543038711425091996, guid: 09f0b51fff86f644395246b73bcaf009, type: 3}
   spawnPosition: {x: -11, y: 2}
+--- !u!114 &1682755009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682755006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7fa08ef5daca4f3ba1228832a6db503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 6434211303722408970, guid: c20debf0b2d0c45b0b56a4b836b0c983, type: 3}
 --- !u!1 &1687379738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,7 +1130,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e7a75e96881a44fe1950eed95a42dcf9, type: 2}
+  - {fileID: 2100000, guid: 3b61272ba67e69047a50838566ad374a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1174,4 +1186,4 @@ SceneRoots:
   - {fileID: 887122889}
   - {fileID: 1682755007}
   - {fileID: 678315319}
-  - {fileID: 455574211}
+  - {fileID: 1906820}

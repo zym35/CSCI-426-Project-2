@@ -27,6 +27,7 @@ public class BuildBlockCollsionLogic : MonoBehaviour
 
         this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         // Calculate the top position of the target object
         float targetTopY = target.transform.position.y + target.GetComponent<Collider2D>().bounds.extents.y;
         float myHalfHeight = GetComponent<Collider2D>().bounds.extents.y;
