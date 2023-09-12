@@ -415,8 +415,8 @@ Transform:
   m_GameObject: {fileID: 64563603}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5, z: 0}
-  m_LocalScale: {x: 1000, y: 2, z: 1}
+  m_LocalPosition: {x: 0, y: -7, z: 0}
+  m_LocalScale: {x: 1000, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -568,8 +568,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 3942652903616358151, guid: 6c8ef3528660d68439768edac9cc49ee, type: 3}
-  - {fileID: 7608966149246976009, guid: 61b5ef10536996b45b0a241c500e9616, type: 3}
-  - {fileID: 3543038711425091996, guid: 09f0b51fff86f644395246b73bcaf009, type: 3}
   spawnPosition: {x: -11, y: 2}
 --- !u!4 &240848929
 Transform:
@@ -580,7 +578,7 @@ Transform:
   m_GameObject: {fileID: 240848926}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.18, y: 2, z: 0}
+  m_LocalPosition: {x: -11.18, y: 2, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1627,6 +1625,7 @@ GameObject:
   - component: {fileID: 1251980894}
   - component: {fileID: 1251980893}
   - component: {fileID: 1251980892}
+  - component: {fileID: 1251980895}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1708,6 +1707,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1251980895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251980891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f53da342bb740828c97b984c90677c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  truck: {fileID: 1908873496}
 --- !u!1001 &1271259587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2394,7 +2406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf223c407d6f40fc9b908f1c029b218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
 --- !u!212 &1908873495
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2636,14 +2647,15 @@ SpriteRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1251980894}
   - {fileID: 961564525}
   - {fileID: 64563607}
-  - {fileID: 1251980894}
   - {fileID: 1908873496}
   - {fileID: 1027390891}
   - {fileID: 240848929}
   - {fileID: 84342631}
   - {fileID: 876183999}
+  - {fileID: 759941921}
   - {fileID: 549053590}
   - {fileID: 1271259587}
   - {fileID: 1342168630}
@@ -2656,6 +2668,5 @@ SceneRoots:
   - {fileID: 346350746}
   - {fileID: 255450562}
   - {fileID: 5023483}
-  - {fileID: 759941921}
   - {fileID: 775337473}
   - {fileID: 322144561}
