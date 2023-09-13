@@ -67,7 +67,8 @@ public class DeathManager : MonoBehaviour
         // Destroy all GameObjects except the camera and DeathManager
         foreach (GameObject obj in GameObject.FindObjectsOfType<GameObject>())
         {
-            if (obj != this.gameObject && obj.tag != "MainCamera")
+            if (obj != this.gameObject && obj.tag != "MainCamera" && obj.name != "AudioManager" 
+                && obj.name != "ApplicationManager" && obj.name != "SoundEffectSource" && obj.name != "MusicSource")
             {
                 Destroy(obj);
             }
@@ -90,5 +91,6 @@ public class DeathManager : MonoBehaviour
         netIncomeText.text = $"${netIncome}";
 
         this.transform.GetChild(0).gameObject.SetActive(true);
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.Fail, .5f);
     }
 }

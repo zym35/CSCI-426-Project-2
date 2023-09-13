@@ -12,12 +12,14 @@ public class CarMoveScript : MonoBehaviour
     private float currentSpeed; // Current speed
     private Camera cam;
     private float halfCamWidth;
+    private AudioSource _audioSource;
 
     void Start()
     {
         cam = Camera.main;
         halfCamWidth = cam.orthographicSize * cam.aspect;
         currentSpeed = initialSpeed;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -50,5 +52,24 @@ public class CarMoveScript : MonoBehaviour
         Vector3 clampedPosition = transform.position;
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, leftLimit, rightLimit);
         transform.position = clampedPosition;
+
+        // sound
+        float perc = currentSpeed / maxSpeed;
+        if (perc < .3f)
+        {
+            _audioSource.volume = 0;
+        }
+        else if (perc < .5f)
+        {
+            _audioSource.volume = .15f;
+        }
+        else if (perc < .7f)
+        {
+            _audioSource.volume = .45f;
+        }
+        else
+        {
+            _audioSource.volume = .7f;
+        }
     }
 }

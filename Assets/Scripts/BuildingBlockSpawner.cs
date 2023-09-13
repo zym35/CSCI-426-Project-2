@@ -19,6 +19,7 @@ public class BuildingBlockSpawner : MonoBehaviour
             // Spawn a random prefab
             GameObject prefabToSpawn = prefabs[Random.Range(0, prefabs.Count)];
             GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.GenerateBlock, .7f);
 
             // Get the Rigidbody2D component and freeze it
             Rigidbody2D rb = spawnedObject.GetComponent<Rigidbody2D>();

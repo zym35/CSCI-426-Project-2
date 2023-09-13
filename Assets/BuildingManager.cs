@@ -83,6 +83,7 @@ public class BuildingManager : MonoBehaviour
 
         // Update the current stack height
         currentStackHeight += 0.5f + buildingPartHalfHeight;
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BuildBlock);
 
         if(buildingPart.name.Contains("Wall"))
         {
@@ -126,5 +127,7 @@ public class BuildingManager : MonoBehaviour
         // Spawn in new building box
         Vector3 spawnPosition = transform.position + new Vector3(6, 0, 0);
         newBuildingBox.spawnBuilding(spawnPosition);
+        
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.BuildBuilding, 2);
     }
 }

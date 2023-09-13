@@ -46,6 +46,16 @@ public class BuildBlockCollsionLogic : MonoBehaviour
     {
         GameObject truck = GameObject.FindGameObjectWithTag("Truck");
         truck.GetComponent<TruckManager>().addToStack(this.gameObject);
+        
+        //sound
+        AudioManager.SoundEffect sound = 0;
+        if (name.Contains("Wall"))
+            sound = AudioManager.SoundEffect.Wall;
+        if (name.Contains("Glass"))
+            sound = AudioManager.SoundEffect.Glass;
+        if (name.Contains("Roof"))
+            sound = AudioManager.SoundEffect.Roof;
+        AudioManager.Instance.PlaySoundEffect(sound);
     }
 
     IEnumerator BreakAnimation()

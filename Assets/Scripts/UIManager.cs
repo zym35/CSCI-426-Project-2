@@ -42,5 +42,6 @@ public class UIManager : MonoBehaviour
         _money += money;
         DeathManager.Instance.netIncome += money;
         moneyText.text = $"Money: ${_money}";
+        AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.Coin, .1f);
     }
 }
