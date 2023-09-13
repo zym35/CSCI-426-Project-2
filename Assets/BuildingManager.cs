@@ -70,9 +70,17 @@ public class BuildingManager : MonoBehaviour
         Rigidbody2D rb = buildingPart.GetComponent<Rigidbody2D>();
         Collider2D col = buildingPart.GetComponent<Collider2D>();
 
-        if (rb != null) rb.isKinematic = true;
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = 0;
+            rb.Sleep();
+        }
+
         //if (col != null) col.enabled = false;
-        
+
         // Calculate the position to move the popped building part to
         float buildingBottomY = transform.position.y - GetComponent<Collider2D>().bounds.extents.y;
         float buildingPartHalfHeight = buildingPart.GetComponent<Collider2D>().bounds.extents.y + 0.1f;
@@ -93,6 +101,7 @@ public class BuildingManager : MonoBehaviour
         {
             if (!isBuildingValid)
             {
+
                 DeathManager.Instance.restartGame("No Wall for Foundation");
             }
             numGlass += 1;

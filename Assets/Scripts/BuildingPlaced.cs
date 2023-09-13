@@ -12,6 +12,7 @@ public class BuildingPlaced : MonoBehaviour
     {
         Instantiate(this);
         moneyRate = (numWall + numGlass * 2) + numRoof;
+        print("Glass: " + numGlass + "  Wall: " + numWall +"   Roof: " + numRoof);
         empty = false;
 
         DeathManager.Instance.totalWalls += numWall;

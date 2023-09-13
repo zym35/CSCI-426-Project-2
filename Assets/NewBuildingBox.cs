@@ -21,7 +21,12 @@ public class NewBuildingBox : MonoBehaviour
             Transform firstChild = buildingInstance.transform.GetChild(0);
 
             float randomHeight = Random.Range(-3f, 3f);
-            GameObject.FindWithTag("MainCamera").GetComponent<CameraManager>().targetSize += randomHeight;
+            CameraManager camMan = GameObject.FindWithTag("MainCamera").GetComponent<CameraManager>();
+            if(camMan.targetSize + randomHeight > 8)
+            {
+                camMan.targetSize += randomHeight;
+            }
+            
             float newScaleHeight = Mathf.Max(6+2*numOfBuildings, 10 + randomHeight * numOfBuildings);
             Vector3 newScale = new Vector3(6, newScaleHeight, 0);
             firstChild.localScale = newScale;

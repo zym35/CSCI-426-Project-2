@@ -28,9 +28,15 @@ public class BuildBlockCollsionLogic : MonoBehaviour
     {
         isAttached = true; // Mark as attached so it won't break or attach again
 
-        this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        this.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-        this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        Rigidbody2D rb = this.gameObject.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = 0;
+            rb.Sleep();
+        }
         // Calculate the top position of the target object
         float targetTopY = target.transform.position.y + target.GetComponent<Collider2D>().bounds.extents.y;
         float myHalfHeight = GetComponent<Collider2D>().bounds.extents.y;
