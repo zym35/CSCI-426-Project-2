@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Brice_Duplicate.unity
+    guid: 0dd409c6c3dbf4de180794791e9d5d65
   m_configObjects: {}

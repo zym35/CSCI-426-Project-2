@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     public Transform truck;
-    private float leftLimit = -3f;
+    private float leftLimit = 0f;
     private float offset = 0f;
     private Transform activeBuildingBox;
     private Camera cam;

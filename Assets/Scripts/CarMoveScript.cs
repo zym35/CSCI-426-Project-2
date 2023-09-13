@@ -45,8 +45,8 @@ public class CarMoveScript : MonoBehaviour
 
         // Get camera position and limits
         Vector3 camPosition = cam.transform.position;
-        float leftLimit = camPosition.x - halfCamWidth - 3;
-        float rightLimit = camPosition.x + halfCamWidth;
+        float leftLimit = camPosition.x - halfCamWidth + 2;
+        float rightLimit = camPosition.x + halfCamWidth -2;
 
         // Clamp the truck's position to the camera's bounds
         Vector3 clampedPosition = transform.position;

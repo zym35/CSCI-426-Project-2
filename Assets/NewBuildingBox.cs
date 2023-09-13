@@ -22,7 +22,7 @@ public class NewBuildingBox : MonoBehaviour
 
             float randomHeight = Random.Range(-3f, 3f);
             CameraManager camMan = GameObject.FindWithTag("MainCamera").GetComponent<CameraManager>();
-            if(camMan.targetSize + randomHeight > 8)
+            if(camMan.targetSize + randomHeight > 10)
             {
                 camMan.targetSize += randomHeight;
             }
