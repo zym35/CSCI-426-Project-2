@@ -5,7 +5,9 @@ using UnityEngine;
 public class BuildingBlockSpawner : MonoBehaviour
 {
     public List<GameObject> prefabs;
-    public Vector2 spawnPosition = new Vector2(-11, 2);
+    public Transform spawnPoint;
+
+    public float scalingDuration = 0.15f; // Duration of the scaling animation in seconds
 
     void Start()
     {
@@ -17,9 +19,52 @@ public class BuildingBlockSpawner : MonoBehaviour
         while (true)
         {
             // Spawn a random prefab
-            GameObject prefabToSpawn = prefabs[Random.Range(0, prefabs.Count)];
-            GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
+            float randomValue = Random.value;
+
+            GameObject prefabToSpawn;
+
+            if (randomValue <= 0.15f) // 15% chance for element 0
+            {
+                prefabToSpawn = prefabs[0];
+            }
+            else if (randomValue <= 0.15f + 0.35f) // 35% chance for element 1
+            {
+                prefabToSpawn = prefabs[1];
+            }
+            else // 50% chance for element 2
+            {
+                prefabToSpawn = prefabs[2];
+            }
+
+            GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, Quaternion.identity);
             AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.GenerateBlock, .7f);
+
+            // Get the Transform component for scaling animation
+            Transform spawnedTransform = spawnedObject.transform;
+
+            // Store the original scale
+            Vector3 originalScale = spawnedTransform.localScale;
+
+            // Initial scale (you can set this to any value you want)
+            Vector3 initialScale = Vector3.zero;
+
+            // Target scale (1, 1, 1 is the original scale)
+            Vector3 targetScale = originalScale;
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < scalingDuration)
+            {
+                // Interpolate the scale over time using Lerp
+                spawnedTransform.localScale = Vector3.Lerp(initialScale, targetScale, elapsedTime / scalingDuration);
+
+                elapsedTime += Time.deltaTime;
+
+                yield return null;
+            }
+
+            // Ensure the final scale is exactly the target scale
+            spawnedTransform.localScale = targetScale;
 
             // Get the Rigidbody2D component and freeze it
             Rigidbody2D rb = spawnedObject.GetComponent<Rigidbody2D>();

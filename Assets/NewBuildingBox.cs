@@ -9,6 +9,8 @@ public class NewBuildingBox : MonoBehaviour
     public GameObject prefabToSpawn;
     int numOfBuildings = 0;
 
+    public float scaleAmount = 2f;
+
     public void spawnBuilding(Vector3 spawnPosition)
     {
         // Instantiate the prefab at the given position
@@ -42,10 +44,32 @@ public class NewBuildingBox : MonoBehaviour
             Vector3 secondChildPosition = newPosition + new Vector3(0, ((newScaleHeight - 10) / 2.0f) + 5, 0);
             secondChild.position = secondChildPosition;
             buildingInstance.transform.position = new Vector3(buildingInstance.transform.position.x, 0.0f, buildingInstance.transform.position.z);
+
+            UpgradeCraneHeight();
         }
         else
         {
             Debug.LogWarning("The prefab does not have enough children to scale and position.");
+        }
+    }
+
+    public void UpgradeCraneHeight()
+    {
+        Transform firstChild = this.gameObject.transform.GetChild(0);
+        Vector3 orginalPosition = firstChild.position;
+
+        Vector3 newScale = new Vector3(0, 2, 0);
+        firstChild.localScale += newScale;
+
+        Vector3 newPosition = orginalPosition + new Vector3(0, 1, 0);
+        firstChild.position = newPosition;
+
+        // Move the next 3 children up by the same amount
+        for (int i = 1; i < 4; i++)
+        {
+            Transform child = this.gameObject.transform.GetChild(i);
+            Vector3 newChildPosition = child.position + new Vector3(0, 2, 0);
+            child.position = newChildPosition;
         }
     }
 

@@ -61,12 +61,12 @@ public class UpgradeManager : MonoBehaviour
     {
         if (level>= maxLevel){
             string priceColor = "black";
-            textObject.text = $"{upgradeName} ({level}) $<color={priceColor}>MAXED</color>";
+            textObject.text = $"{upgradeName} ({level}) <color={priceColor}>MAXED</color>";
         }
         else
         {
             string priceColor = (UIManager.Instance._money >= price) ? "00A10A" : "A10007";
-            textObject.text = $"{upgradeName} ({level}) $<color=#{priceColor}>{price}</color>";
+            textObject.text = $"{upgradeName} ({level}) <color=#{priceColor}>${price}</color>";
         }
     }
 
