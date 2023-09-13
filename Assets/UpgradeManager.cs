@@ -108,6 +108,8 @@ public class UpgradeManager : MonoBehaviour
                 default:
                     break;
             }
+            
+            AudioManager.Instance.PlaySoundEffect(AudioManager.SoundEffect.Upgrade);
         }
     }
 }

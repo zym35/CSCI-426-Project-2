@@ -14,7 +14,8 @@ public class AudioManager : MonoBehaviour
         BuildBlock,
         BuildBuilding,
         Fail,
-        Coin
+        Coin,
+        Upgrade
     }
 
     public enum Music
